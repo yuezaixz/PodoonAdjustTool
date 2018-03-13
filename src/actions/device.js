@@ -1,5 +1,31 @@
 import * as types from '../constants/ActionTypes';
+import * as APIs from '../constants/ServerAPIs';
 import PillowManager from '../manager/PillowManager'
+import * as Utils from '../utils/Utils'
+import NetUtil from '../utils/NetUtils'
+
+export function uploadRecord(macAddress, point1Val, point2Val ,point3Val, voltage, callback) {
+    let recordTime = Utils.formatTime(new Date())
+    return async (dispatch, getState) =>{
+        //dispatch start fetch action
+        dispatch({type: types.START_UPLOAD_RECORD});
+
+        let data = {
+            mac_address:macAddress,
+            point1_vector:point1Val,
+            point2_vector:point2Val ,
+            point3_vector:point3Val,
+            voltage,
+            record_time:recordTime
+        }
+
+        NetUtil.postJson(APIs.uploadRecord, data, (responseData)=>{
+            console.log(responseData)
+            callback()
+            dispatch({type: types.SUCCESS_UPLOAD_RECORD});
+        })
+    }
+}
 
 export function deviceDisconnect(uuid) {
     return async (dispatch, getState) =>{

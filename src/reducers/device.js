@@ -6,6 +6,10 @@ const initialState = {
 
 export default function(state = {index: 0}, action) {
     switch(action.type) {
+        case types.START_UPLOAD_RECORD:
+            return {...state, isUploadingRecord: true};
+        case types.SUCCESS_UPLOAD_RECORD:
+            return {...state, isUploadingRecord: true};
         case types.START_READ_VOLTAGE:
             return {...state, isReadingVoltage: true};
         case types.READ_VOLTAGE:

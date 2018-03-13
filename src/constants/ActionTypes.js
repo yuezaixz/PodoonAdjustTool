@@ -45,3 +45,8 @@ export const RECORD_SENSOR_ADJUST = 'RECORD_SENSOR_ADJUST';
 export const SENSOR_ADJUST = 'SENSOR_ADJUST';
 export const SUCCESS_SENSOR_ADJUST = 'SUCCESS_SENSOR_ADJUST';
 export const RE_ADJUST = 'RE_ADJUST';
+
+/****************传感器校准****************/
+export const START_UPLOAD_RECORD = 'START_UPLOAD_RECORD';
+export const SUCCESS_UPLOAD_RECORD = 'SUCCESS_UPLOAD_RECORD';
+export const FAIL_UPLOAD_RECORD = 'FAIL_UPLOAD_RECORD';

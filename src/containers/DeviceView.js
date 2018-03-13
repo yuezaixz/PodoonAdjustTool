@@ -34,7 +34,16 @@ class DeviceView extends Component {
         this.setState({open: false})
         this.getLoading().show()
         this.props.actions.stopReadInsoleData()
-        setTimeout(()=>{this.props.actions.startAdjust()},300)
+
+        this.props.actions.uploadRecord(
+            this.props.device_data.mac_address,
+            this.props.device_data.point1Val,
+            this.props.device_data.point2Val,
+            this.props.device_data.point3Val,
+            this.props.device_data.voltage,()=>{
+                this.props.actions.startAdjust()
+            })
+
 
     }
     handleClose() {
