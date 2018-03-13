@@ -13,5 +13,6 @@ module.exports = {
         successSensorAdjust: 'com.podoon.adjusttool.successSensorAdjust',               //校准某传感器成功
         readInsoleData: 'com.podoon.adjusttool.readInsoleData',
         readMacAddress: 'com.podoon.adjusttool.readMacAddress',
+        reciveOK: 'com.podoon.adjusttool.OK',
     }
 };

@@ -104,10 +104,8 @@ export default class PillowManager{
             } else if (util.startWith(dataStr, "M")) {
                 var macAddress = dataStr.substring(2)
                 NotificationCenter.post(NotificationCenter.name.deviceData.readMacAddress, {macAddress})
-            } else if (util.startWith(dataStr, "\\*5S")) {
-                var index = indexMap[dataStr.substring(3,5)]
-                var isSuccess = indexMap[dataStr.substring(6,7)] === '1'
-                NotificationCenter.post(NotificationCenter.name.deviceData.sensorAdjust, {index,isSuccess})
+            } else if (util.startWith(dataStr, "F:")) {
+                NotificationCenter.post(NotificationCenter.name.deviceData.reciveOK)
 
             }
         }
@@ -140,24 +138,20 @@ export default class PillowManager{
     //API
 
     startCheckVoltage() {
-        const data = stringToBytes('BR');
-        return this.writeData(data)
+        return this.writeData('BR')
     }
 
     startReadVoltage() {
-        const data = stringToBytes('BG');
-        return this.writeData(data)
+        return this.writeData('BG')
     }
 
     startReadMacAddress() {
-        const data = stringToBytes('GM');
-        return this.writeData(data)
+        return this.writeData('GM')
     }
 
     startReadInsoleData() {
         return new Promise((resolve, reject) => {
-            const data = stringToBytes('E');
-            this.writeData(data)
+            this.writeData('E')
 
             resolve()
         });
@@ -165,8 +159,7 @@ export default class PillowManager{
 
     stopReadInsoleData() {
         return new Promise((resolve, reject) => {
-            const data = stringToBytes('D');
-            this.writeData(data)
+            this.writeData('D')
 
             resolve()
         });
@@ -174,8 +167,7 @@ export default class PillowManager{
 
     startAdjust() {
         return new Promise((resolve, reject) => {
-            const data = stringToBytes('PC');
-            this.writeData(data)
+            this.writeData('PC')
 
             resolve()
         });
@@ -183,19 +175,16 @@ export default class PillowManager{
 
     stopAdjust() {
         return new Promise((resolve, reject) => {
-            const data = stringToBytes('PS');
-            this.writeData(data)
+            this.writeData('PS')
 
             resolve()
         });
     }
 
-    sensorAdjust(index) {
+    sensorAdjust(index, val) {
         return new Promise((resolve, reject) => {
-            var cmd = 'SUC:AB'+sensorIndexCMDMap[index]+'5E'
-            console.log(cmd)
-            const data = stringToBytes(cmd);
-            this.writeData(data)
+            var cmd = 'PSP'+index+','+val
+            this.writeData(cmd)
 
             resolve()
         });
@@ -337,10 +326,12 @@ export default class PillowManager{
     }
 
     writeData(command) {
+        console.log(command)
+        const data = stringToBytes(command);
         let current_device = this.current_pillow
         return new Promise((resolve, reject) => {
             if (current_device) {
-                BleManager.write(current_device.uuid, current_device.serviceUUID, current_device.writeUUID, command)
+                BleManager.write(current_device.uuid, current_device.serviceUUID, current_device.writeUUID, data)
                     .then(() => {
                         resolve()
                     })

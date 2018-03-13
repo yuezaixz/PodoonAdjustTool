@@ -24,7 +24,8 @@ export default function(state = {index: 0}, action) {
 
         //开始校准,进入退出校准模式
         case types.START_ADJUST:
-            return {...state, isStartAdjust: true, point1Val:0, point2Val:0, point3Val:0};
+            return {...state, isStartAdjust: true,
+                isPoint1SensorAdjust :false, isPoint2SensorAdjust :false, isPoint3SensorAdjust :false};
         case types.SUCCESS_START_ADJUST:
             return {...state, isStartAdjust: false};
         case types.STOP_ADJUST:
@@ -33,8 +34,19 @@ export default function(state = {index: 0}, action) {
             return {...state, isStopAdjust: false};
         //校准传感器
         case types.SENSOR_ADJUST:
-            return {...state, isSensorAdjust: true};
+            return {...state,
+                isPoint1SensorAdjust: action.index == 1?true:state.isPoint1SensorAdjust,
+                isPoint2SensorAdjust: action.index == 2?true:state.isPoint2SensorAdjust,
+                isPoint3SensorAdjust: action.index == 3?true:state.isPoint3SensorAdjust
+            };
         case types.SUCCESS_SENSOR_ADJUST:
+            return {...state,
+                isSensorAdjust: false,
+                isPoint1SensorAdjust: action.index == 1?false:state.isPoint1SensorAdjust,
+                isPoint2SensorAdjust: action.index == 2?false:state.isPoint2SensorAdjust,
+                isPoint3SensorAdjust: action.index == 3?false:state.isPoint3SensorAdjust
+            };
+        case types.RECORD_SENSOR_ADJUST:
             return {...state,
                 isSensorAdjust: false,
                 point1Val:action.index == 1?state.point1:state.point1Val,
@@ -42,9 +54,13 @@ export default function(state = {index: 0}, action) {
                 point3Val:action.index == 3?state.point3:state.point3Val
             };
         case types.CLEAR_DEVICE_DATA:
-            return {...state,  voltage: 0, point1: 0 , point2: 0 , point3: 0 , point1Val: 0 , point2Val: 0 , point3Val: 0  }
+            return {...state,  voltage: 0, point1: 0 , point2: 0 , point3: 0 , point1Val: 0 , point2Val: 0 , point3Val: 0 ,
+                isPoint1SensorAdjust :false, isPoint2SensorAdjust :false, isPoint3SensorAdjust :false  }
         case types.RE_ADJUST:
-            return {...state,  point1: 0 , point2: 0 , point3: 0 , point1Val: 0 , point2Val: 0 , point3Val: 0 }
+            return {...state,
+                point1Val:action.index == 1?0:state.point1Val,
+                point2Val:action.index == 2?0:state.point2Val,
+                point3Val:action.index == 3?0:state.point3Val }
     }
 
     return state;

@@ -106,13 +106,17 @@ export function successStopAdjust() {
     return {type: types.SUCCESS_STOP_ADJUST}
 }
 
-export function sensorAdjust(index) {
+export function sensorAdjust(index, val) {
     return async (dispatch, getState) =>{
-        PillowManager.ShareInstance().sensorAdjust(index)
+        PillowManager.ShareInstance().sensorAdjust(index, val)
             .then(()=>{
-                dispatch({type: types.SENSOR_ADJUST})
+                dispatch({type: types.SENSOR_ADJUST, index})
             })
     }
+}
+
+export function recordSensorAdjust(index) {
+    return {type: types.RECORD_SENSOR_ADJUST, index}
 }
 
 export function successSensorAdjust(index) {
@@ -121,4 +125,8 @@ export function successSensorAdjust(index) {
 
 export function reAdjust(index) {
     return {type: types.RE_ADJUST, index}
+}
+
+export function clearDeviceData() {
+    return {type: types.CLEAR_DEVICE_DATA}
 }

@@ -28,7 +28,7 @@ class Main extends Component {
         this.props.getLoading().show()
     }
     handleAdjustPoint = (index)=>{
-        this.props.actions.successSensorAdjust(index)
+        this.props.actions.recordSensorAdjust(index)
     }
     handleReAdjustPoint = (index)=>{
         this.props.actions.reAdjust(index)
@@ -59,6 +59,40 @@ class Main extends Component {
         this.props.getLoading().dismiss()
     }
 
+    reciveOK(data) {
+        if (this.props.device_data.isStartAdjust) {
+            this.props.actions.successStartAdjust()
+            setTimeout(()=>{
+                this.props.actions.sensorAdjust(1, this.props.device_data.point1Val)
+            },200)
+            this.props.getLoading().dismiss()
+            this.props.getLoading().show('校准一号点')
+        } else if (this.props.device_data.isPoint1SensorAdjust) {
+            this.props.actions.successSensorAdjust(1)
+            setTimeout(()=>{
+                this.props.actions.sensorAdjust(2, this.props.device_data.point2Val)
+            })
+            this.props.getLoading().dismiss()
+            this.props.getLoading().show('校准二号点')
+        } else if (this.props.device_data.isPoint2SensorAdjust) {
+            this.props.actions.successSensorAdjust(2)
+            setTimeout(()=>{
+                this.props.actions.sensorAdjust(3, this.props.device_data.point3Val)
+            },200)
+            this.props.getLoading().dismiss()
+            this.props.getLoading().show('校准三号点')
+        } else if (this.props.device_data.isPoint3SensorAdjust) {
+            this.props.actions.successSensorAdjust(3)
+            setTimeout(()=>{
+                this.props.actions.stopAdjust()
+                this.props.actions.clearDeviceData()
+            },200)
+            this.props.navigation.pop()
+            this.props.getLoading().dismiss()
+            this.props.getLoading().show('校准完成')
+        }
+    }
+
     readInsoleData(data) {
         if (data) {
             this.props.actions.readInsoleData(data.point1, data.point2, data.point3)
@@ -78,6 +112,7 @@ class Main extends Component {
 
     componentDidMount() {
         this.voltageListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.voltage, this.readVoltage.bind(this), '');
+        this.reciveOKListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.reciveOK, this.reciveOK.bind(this), '');
         this.macAddressListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.readMacAddress, this.readMacAddress.bind(this), '');
         this.readInsoleDataListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.readInsoleData, this.readInsoleData.bind(this), '');
         this.disconnectListener = NotificationCenter.createListener(NotificationCenter.name.search.loseConnecting, this.disconnectHandle.bind(this), '');
@@ -89,6 +124,7 @@ class Main extends Component {
         NotificationCenter.removeListener(this.disconnectListener);
         NotificationCenter.removeListener(this.reconnectListener);
         NotificationCenter.removeListener(this.readInsoleDataListener);
+        NotificationCenter.removeListener(this.reciveOKListener);
     }
     componentDidUpdate () {
 

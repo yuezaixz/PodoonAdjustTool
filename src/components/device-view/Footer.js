@@ -8,16 +8,11 @@ import {
     Dimensions
 } from 'react-native';
 import {Theme} from "../../styles";
+import * as StorageKeys from "../../constants/StorageKeys";
 
 let {height, width} = Dimensions.get('window');
 
 class Footer extends Component {
-    handleNext = ()=>{
-        if (!this.props.device_data.isStartAdjust || !this.props.device_data.isStartAdjustSUB) {//防止多次发送
-            this.props.getLoading().show()
-            this.props.actions.stopAdjust()
-        }
-    }
     render() {
         return (
             <View style={styles.container}>
@@ -25,7 +20,7 @@ class Footer extends Component {
                 activeOpacity={Theme.active.opacity}
                 underlayColor='transparent'
                 style={{flex:1}}
-                onPress={this.handleNext.bind(this)}>
+                onPress={() => this.props.openModal()}>
                 <View style={styles.buttonContainer} >
                     <Text style={[this.props.device_data.hadInflateTest&&this.props.device_data.voltage&&
                     (this.props.device_data.fcpMax||this.props.device_data.fcpMax==0)&&this.props.device_data.hadFATTest ?styles.text:styles.textDisable, styles.title]}>

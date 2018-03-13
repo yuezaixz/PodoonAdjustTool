@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import {
     StyleSheet,
-    View
+    View,
+    Text,
+    TouchableOpacity,
 } from 'react-native';
 import {
     Header,
@@ -14,8 +15,10 @@ import {
 import Actions from '../actions';
 import StatusBarLeftButton from '../components/common/StatusBarLeftButton'
 import Loading from '../components/common/WLoading'
+import Modal from 'react-native-simple-modal';
 
 class DeviceView extends Component {
+    state = {open: false};
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
 
@@ -26,6 +29,17 @@ class DeviceView extends Component {
             ),
         };
     };
+
+    handleOk(){
+        this.setState({open: false})
+        this.getLoading().show()
+        this.props.actions.stopReadInsoleData()
+        setTimeout(()=>{this.props.actions.startAdjust()},300)
+
+    }
+    handleClose() {
+        this.setState({open: false})
+    }
 
     getLoading() {
         return this.refs['loading'];
@@ -54,7 +68,40 @@ class DeviceView extends Component {
             <View style={styles.container}>
                 <Header {...this.props}/>
                 <Main {...this.props} getLoading={this.getLoading.bind(this)} />
-                <Footer {...this.props} getLoading={this.getLoading.bind(this)} />
+                <Footer {...this.props}
+                        openModal={()=>{
+                            if (this.props.device_data.point1Val&&this.props.device_data.point2Val&&this.props.device_data.point3Val) {
+                                this.setState({open:true})}
+                            }
+                        }
+                        getLoading={this.getLoading.bind(this)} />
+                <Modal
+                    offset={-80}
+                    open={this.state.open}
+                    modalDidOpen={() => console.log('打开确认写入')}
+                    modalDidClose={() => this.handleClose()}
+                    style={{alignItems: 'center'}}>
+                    <View>
+                        <Text style={{fontSize: 20,fontWeight:'bold', marginTop: 10,textAlign:'center'}}>确定写入校准值?</Text>
+                        <Text style={{fontSize: 40,fontWeight:'bold', marginTop: 15, marginBottom: 5,textAlign:'center'}}>
+                            {this.props.device_data.point1Val},{this.props.device_data.point2Val},{this.props.device_data.point3Val}
+                        </Text>
+                        <View style={{flexDirection:'row',height:40}}>
+
+                            <TouchableOpacity
+                                style={{flex:1,alignItems:'center',justifyContent:'center'}}
+                                onPress={() => this.handleOk()}>
+                                <Text style={{fontSize: 16,textAlign:'center'}} >确定</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={{flex:1,alignItems:'center',justifyContent:'center'}}
+                                onPress={() => this.handleClose()}>
+                                <Text style={{fontSize: 16,textAlign:'center'}} >取消</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
                 <Loading ref={'loading'} text={'测试中...'} />
             </View>
         );
