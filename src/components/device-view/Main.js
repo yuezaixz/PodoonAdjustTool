@@ -24,14 +24,14 @@ class Main extends Component {
     stdVoltage = 3.8
 
     handleVoltage = ()=>{
-        // this.props.actions.startReadVoltage(this.props.device_data.uuid, this.props.device_data.serviceUUID, this.props.device_data.writeUUID)
-        // this.props.getLoading().show()
+        this.props.actions.startReadVoltage(this.props.device_data.uuid, this.props.device_data.serviceUUID, this.props.device_data.writeUUID)
+        this.props.getLoading().show()
     }
     handleAdjustPoint = (index)=>{
-
+        this.props.actions.successSensorAdjust(index)
     }
     handleReAdjustPoint = (index)=>{
-
+        this.props.actions.reAdjust(index)
     }
     voltageIsPassed = (voltage, stdVoltage)=> {
         return voltage > stdVoltage
@@ -54,7 +54,8 @@ class Main extends Component {
     readVoltage(data) {
         if (data.voltage) {
             this.props.actions.readVoltage(data.voltage)
-        }
+            this.props.actions.startReadInsoleData()
+       }
         this.props.getLoading().dismiss()
     }
 
@@ -118,7 +119,7 @@ class Main extends Component {
                     <View style={styles.block_line} />
                     <Text style={[styles.block_title,styles.block_title_middle]}>传感器校准</Text>
                     <View style={styles.block_main} >
-                        <Text style={[styles.block_main_text,this.props.device_data.point1Val?styles.text_passed:styles.text_normal]}>1#{this.manualStatusStr(this.props.device_data.point1Val || this.props.device_data.point1)}</Text>
+                        <Text style={[styles.block_main_text,this.props.device_data.point1Val?styles.text_passed:styles.text_normal]}>1#{this.props.device_data.point1Val || this.props.device_data.point1}</Text>
                         <TouchableHighlight
                             activeOpacity={Theme.active.opacity}
                             underlayColor='transparent'
@@ -130,7 +131,7 @@ class Main extends Component {
                         </TouchableHighlight>
                     </View>
                     <View style={styles.block_main} >
-                        <Text style={[styles.block_main_text,this.props.device_data.point2Val?styles.text_passed:styles.text_normal]}>2#{this.manualStatusStr(this.props.device_data.point2Val || this.props.device_data.point2)}</Text>
+                        <Text style={[styles.block_main_text,this.props.device_data.point2Val?styles.text_passed:styles.text_normal]}>2#{this.props.device_data.point2Val || this.props.device_data.point2}</Text>
                         <TouchableHighlight
                             activeOpacity={Theme.active.opacity}
                             underlayColor='transparent'
@@ -142,7 +143,7 @@ class Main extends Component {
                         </TouchableHighlight>
                     </View>
                     <View style={styles.block_main} >
-                        <Text style={[styles.block_main_text,this.props.device_data.point3Val?styles.text_passed:styles.text_normal]}>3#{this.manualStatusStr(this.props.device_data.point3Val || this.props.device_data.point3)}</Text>
+                        <Text style={[styles.block_main_text,this.props.device_data.point3Val?styles.text_passed:styles.text_normal]}>3#{this.props.device_data.point3Val || this.props.device_data.point3}</Text>
                         <TouchableHighlight
                             activeOpacity={Theme.active.opacity}
                             underlayColor='transparent'

@@ -37,14 +37,14 @@ export default function(state = {index: 0}, action) {
         case types.SUCCESS_SENSOR_ADJUST:
             return {...state,
                 isSensorAdjust: false,
-                point1Val:action.index == 0?action.val:state.point1Val,
-                point2Val:action.index == 1?action.val:state.point2Val,
-                point3Val:action.index == 2?action.val:state.point3Val ,
-                completeSensorIndex:action.isSuccess? new Set([...(state.completeSensorIndex || []), action.index]):new Set(state.completeSensorIndex || []),
-                errorSensorIndex:!action.isSuccess? new Set([...(state.errorSensorIndex || []), action.index]):new Set(state.errorSensorIndex || [])
+                point1Val:action.index == 1?state.point1:state.point1Val,
+                point2Val:action.index == 2?state.point2:state.point2Val,
+                point3Val:action.index == 3?state.point3:state.point3Val
             };
         case types.CLEAR_DEVICE_DATA:
-            return {...state,  voltage: 0, completeSensorIndex:new Set([]), errorSensorIndex:new Set([])}
+            return {...state,  voltage: 0, point1: 0 , point2: 0 , point3: 0 , point1Val: 0 , point2Val: 0 , point3Val: 0  }
+        case types.RE_ADJUST:
+            return {...state,  point1: 0 , point2: 0 , point3: 0 , point1Val: 0 , point2Val: 0 , point3Val: 0 }
     }
 
     return state;

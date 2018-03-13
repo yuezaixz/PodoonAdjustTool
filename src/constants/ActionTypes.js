@@ -42,3 +42,4 @@ export const SUCCESS_STOP_ADJUST = 'SUCCESS_STOP_ADJUST';
 //传感器校准，1~16个传感器的校准
 export const SENSOR_ADJUST = 'SENSOR_ADJUST';
 export const SUCCESS_SENSOR_ADJUST = 'SUCCESS_SENSOR_ADJUST';
+export const RE_ADJUST = 'RE_ADJUST';

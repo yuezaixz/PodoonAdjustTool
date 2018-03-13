@@ -51,8 +51,8 @@ export function startReadMacAddress() {
     }
 }
 
-export function readMacAddress(voltage) {
-    return {type: types.READ_MAC_ADDRESS, voltage}
+export function readMacAddress(macAddress) {
+    return {type: types.READ_MAC_ADDRESS, macAddress}
 }
 
 /****************传感器校准****************/
@@ -115,6 +115,10 @@ export function sensorAdjust(index) {
     }
 }
 
-export function successSensorAdjust(index, val) {
-    return {type: types.SUCCESS_SENSOR_ADJUST, index, val}
+export function successSensorAdjust(index) {
+    return {type: types.SUCCESS_SENSOR_ADJUST, index}
+}
+
+export function reAdjust(index) {
+    return {type: types.RE_ADJUST, index}
 }

@@ -15,7 +15,7 @@ class Header extends Component {
         return (
             <View style={styles.container}>
                 <Text style={[styles.text, styles.title]}>
-                    {this.props.device_data.macAddress}
+                    MAC：{this.props.device_data.macAddress}
                 </Text>
             </View>
         );
@@ -24,7 +24,7 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex:0.4,
+        flex:1,
         justifyContent:'center'
     },
     text: {

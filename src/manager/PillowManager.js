@@ -102,7 +102,7 @@ export default class PillowManager{
                 var voltage = dataStr.substring(5)
                 NotificationCenter.post(NotificationCenter.name.deviceData.voltage, {voltage})
             } else if (util.startWith(dataStr, "M")) {
-                var macAddress = dataStr.substring(2, dataStr.length - 2)
+                var macAddress = dataStr.substring(2)
                 NotificationCenter.post(NotificationCenter.name.deviceData.readMacAddress, {macAddress})
             } else if (util.startWith(dataStr, "\\*5S")) {
                 var index = indexMap[dataStr.substring(3,5)]
