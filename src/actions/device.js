@@ -42,6 +42,19 @@ export function readVoltage(voltage) {
     return {type: types.READ_VOLTAGE, voltage}
 }
 
+export function startReadMacAddress() {
+    return async (dispatch, getState) =>{
+        PillowManager.ShareInstance().startReadMacAddress()
+            .then(()=>{
+                dispatch({type: types.START_READ_MAC_ADDRESS})
+            })
+    }
+}
+
+export function readMacAddress(voltage) {
+    return {type: types.READ_MAC_ADDRESS, voltage}
+}
+
 /****************传感器校准****************/
 
 export function startReadInsoleData() {

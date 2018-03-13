@@ -42,6 +42,7 @@ class DeviceView extends Component {
     }
     componentWillMount(){
         this.props.navigation.setParams({ backAction: this._backAction.bind(this) });
+        this.props.actions.startReadMacAddress()
         //连上后需要发指令就在这把
     }
     componentDidMount(){

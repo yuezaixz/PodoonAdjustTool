@@ -99,8 +99,11 @@ export default class PillowManager{
             if (datas[0] == 1) {
                 NotificationCenter.post(NotificationCenter.name.deviceData.readInsoleData, {point1:datas[1], point2:datas[2], point3:datas[3]})
             } else if (util.startWith(dataStr, "Batt")) {
-                var voltage = dataStr.substring(7, dataStr.length - 2)
+                var voltage = dataStr.substring(5)
                 NotificationCenter.post(NotificationCenter.name.deviceData.voltage, {voltage})
+            } else if (util.startWith(dataStr, "M")) {
+                var macAddress = dataStr.substring(2, dataStr.length - 2)
+                NotificationCenter.post(NotificationCenter.name.deviceData.readMacAddress, {macAddress})
             } else if (util.startWith(dataStr, "\\*5S")) {
                 var index = indexMap[dataStr.substring(3,5)]
                 var isSuccess = indexMap[dataStr.substring(6,7)] === '1'
@@ -143,6 +146,11 @@ export default class PillowManager{
 
     startReadVoltage() {
         const data = stringToBytes('BG');
+        return this.writeData(data)
+    }
+
+    startReadMacAddress() {
+        const data = stringToBytes('GM');
         return this.writeData(data)
     }
 

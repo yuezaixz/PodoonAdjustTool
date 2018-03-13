@@ -44,6 +44,13 @@ class Main extends Component {
         }.bind(this))
     }
 
+    readMacAddress(data) {
+        if (data.macAddress) {
+            this.props.actions.readMacAddress(data.macAddress)
+            this.props.actions.startCheckVoltage()
+        }
+    }
+
     readVoltage(data) {
         if (data.voltage) {
             this.props.actions.readVoltage(data.voltage)
@@ -70,12 +77,14 @@ class Main extends Component {
 
     componentDidMount() {
         this.voltageListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.voltage, this.readVoltage.bind(this), '');
+        this.macAddressListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.readMacAddress, this.readMacAddress.bind(this), '');
         this.readInsoleDataListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.readInsoleData, this.readInsoleData.bind(this), '');
         this.disconnectListener = NotificationCenter.createListener(NotificationCenter.name.search.loseConnecting, this.disconnectHandle.bind(this), '');
         this.reconnectListener = NotificationCenter.createListener(NotificationCenter.name.search.reconnect, this.reconnectHandle.bind(this), '');
     }
     componentWillUnmount() {
         NotificationCenter.removeListener(this.voltageListener);
+        NotificationCenter.removeListener(this.macAddressListener);
         NotificationCenter.removeListener(this.disconnectListener);
         NotificationCenter.removeListener(this.reconnectListener);
         NotificationCenter.removeListener(this.readInsoleDataListener);

@@ -10,6 +10,10 @@ export default function(state = {index: 0}, action) {
             return {...state, isReadingVoltage: true};
         case types.READ_VOLTAGE:
             return {...state, isReadingVoltage: false, voltage: action.voltage};
+        case types.START_READ_MAC_ADDRESS:
+            return {...state, isReadingMacAddress: true};
+        case types.READ_MAC_ADDRESS:
+            return {...state, isReadingMacAddress: false, macAddress: action.macAddress};
         /****************传感器校准****************/
         case types.START_READ_INSOLE_DATA:
             return {...state, isReadingInsoleData: true};

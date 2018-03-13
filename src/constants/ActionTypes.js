@@ -23,6 +23,10 @@ export const START_CHECK_VOLTAGE = 'START_CHECK_VOLTAGE';
 export const START_READ_VOLTAGE = 'START_READ_VOLTAGE';
 export const READ_VOLTAGE = 'READ_VOLTAGE';
 
+
+export const START_READ_MAC_ADDRESS = 'START_READ_MAC_ADDRESS';
+export const READ_MAC_ADDRESS = 'READ_MAC_ADDRESS';
+
 /****************传感器校准****************/
 export const START_READ_INSOLE_DATA = 'START_READ_INSOLE_DATA';
 export const STOP_READ_INSOLE_DATA = 'STOP_READ_INSOLE_DATA';

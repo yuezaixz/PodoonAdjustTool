@@ -15,7 +15,7 @@ class Header extends Component {
         return (
             <View style={styles.container}>
                 <Text style={[styles.text, styles.title]}>
-                    {this.props.device_data.uuid}
+                    {this.props.device_data.macAddress}
                 </Text>
             </View>
         );
