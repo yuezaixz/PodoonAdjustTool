@@ -47,6 +47,13 @@ class Main extends Component {
     readMacAddress(data) {
         if (data.macAddress) {
             this.props.actions.readMacAddress(data.macAddress)
+            this.props.actions.startReadAdjust()
+        }
+    }
+
+    readAdjust(data) {
+        if ((data.point1Val+data.point2Val+data.point3Val)) {
+            this.props.actions.readAdjust(data.point1Val, data.point2Val, data.point3Val)
             this.props.actions.startCheckVoltage()
         }
     }
@@ -114,6 +121,7 @@ class Main extends Component {
         this.voltageListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.voltage, this.readVoltage.bind(this), '');
         this.reciveOKListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.reciveOK, this.reciveOK.bind(this), '');
         this.macAddressListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.readMacAddress, this.readMacAddress.bind(this), '');
+        this.readAdjustListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.readAdjust, this.readAdjust.bind(this), '');
         this.readInsoleDataListener = NotificationCenter.createListener(NotificationCenter.name.deviceData.readInsoleData, this.readInsoleData.bind(this), '');
         this.disconnectListener = NotificationCenter.createListener(NotificationCenter.name.search.loseConnecting, this.disconnectHandle.bind(this), '');
         this.reconnectListener = NotificationCenter.createListener(NotificationCenter.name.search.reconnect, this.reconnectHandle.bind(this), '');
@@ -121,6 +129,7 @@ class Main extends Component {
     componentWillUnmount() {
         NotificationCenter.removeListener(this.voltageListener);
         NotificationCenter.removeListener(this.macAddressListener);
+        NotificationCenter.removeListener(this.readAdjustListener);
         NotificationCenter.removeListener(this.disconnectListener);
         NotificationCenter.removeListener(this.reconnectListener);
         NotificationCenter.removeListener(this.readInsoleDataListener);

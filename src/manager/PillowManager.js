@@ -107,6 +107,11 @@ export default class PillowManager{
             } else if (util.startWith(dataStr, "F:")) {
                 NotificationCenter.post(NotificationCenter.name.deviceData.reciveOK)
 
+            } else if (util.startWith(dataStr, "FCAL OTP:")) {
+                var point1Val = parseInt(dataStr.substring(11, 13), 16)
+                var point2Val = parseInt(dataStr.substring(13, 15), 16)
+                var point3Val = parseInt(dataStr.substring(15, 17), 16)
+                NotificationCenter.post(NotificationCenter.name.deviceData.readAdjust, {point1Val, point2Val, point3Val})
             }
         }
     }
@@ -143,6 +148,10 @@ export default class PillowManager{
 
     startReadVoltage() {
         return this.writeData('BG')
+    }
+
+    startReadAdjust() {
+        return this.writeData('PD')
     }
 
     startReadMacAddress() {

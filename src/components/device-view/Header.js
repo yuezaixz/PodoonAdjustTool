@@ -17,6 +17,9 @@ class Header extends Component {
                 <Text style={[styles.text, styles.title]}>
                     MAC：{this.props.device_data.macAddress}
                 </Text>
+                <Text style={[styles.text, styles.title]}>
+                    {(this.props.device_data.done1Val+this.props.device_data.done2Val+this.props.device_data.done3Val)?("该鞋垫已校准"+this.props.device_data.done1Val+","+this.props.device_data.done2Val+","+this.props.device_data.done3Val):"还未校准"}
+                </Text>
             </View>
         );
     }
@@ -24,7 +27,7 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex:1.5,
         justifyContent:'center'
     },
     text: {

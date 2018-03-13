@@ -68,6 +68,19 @@ export function readVoltage(voltage) {
     return {type: types.READ_VOLTAGE, voltage}
 }
 
+export function startReadAdjust() {
+    return async (dispatch, getState) =>{
+        PillowManager.ShareInstance().startReadAdjust()
+            .then(()=>{
+                dispatch({type: types.START_READ_ADJUST})
+            })
+    }
+}
+
+export function readAdjust(point1Val, point2Val, point3Val) {
+    return {type: types.READ_ADJUST, point1Val, point2Val, point3Val}
+}
+
 export function startReadMacAddress() {
     return async (dispatch, getState) =>{
         PillowManager.ShareInstance().startReadMacAddress()

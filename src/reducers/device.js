@@ -18,6 +18,10 @@ export default function(state = {index: 0}, action) {
             return {...state, isReadingMacAddress: true};
         case types.READ_MAC_ADDRESS:
             return {...state, isReadingMacAddress: false, macAddress: action.macAddress};
+        case types.START_READ_ADJUST:
+            return {...state, isReadingAdjust: true};
+        case types.READ_ADJUST:
+            return {...state, isReadingAdjust: false, done1Val: action.point1Val, done2Val: action.point2Val, done3Val: action.point3Val};
         /****************传感器校准****************/
         case types.START_READ_INSOLE_DATA:
             return {...state, isReadingInsoleData: true};
@@ -59,7 +63,8 @@ export default function(state = {index: 0}, action) {
             };
         case types.CLEAR_DEVICE_DATA:
             return {...state,  voltage: 0, point1: 0 , point2: 0 , point3: 0 , point1Val: 0 , point2Val: 0 , point3Val: 0 ,
-                isPoint1SensorAdjust :false, isPoint2SensorAdjust :false, isPoint3SensorAdjust :false  }
+                isPoint1SensorAdjust :false, isPoint2SensorAdjust :false, isPoint3SensorAdjust :false, done1Val: 0,
+                done2Val: 0, done3Val: 0  }
         case types.RE_ADJUST:
             return {...state,
                 point1Val:action.index == 1?0:state.point1Val,
