@@ -25,6 +25,7 @@ import {
 import Actions from '../actions';
 import * as StorageKeys from "../constants/StorageKeys";
 import NotificationCenter from "../public/Com/NotificationCenter/NotificationCenter";
+import PillowManager from "../manager/PillowManager";
 
 const BleManagerModule = NativeModules.BleManager;
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
@@ -74,6 +75,7 @@ class HomeView extends Component {
         this.props.navigation.addListener(
             'didFocus',
             payload => {
+                PillowManager.ShareInstance().setUp()
                 setTimeout(() => {
                     setTimeout(() => {this.props.actions.startSearchDevice()}, 500)
                     this.isFirst = false

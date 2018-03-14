@@ -23,7 +23,6 @@ class Root extends Component {
                 }
             }
         })
-        PillowManager.ShareInstance().setUp()
     }
     componentDidMount() {
         if (Platform.OS === 'android' && Platform.Version >= 23) {

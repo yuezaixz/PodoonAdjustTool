@@ -200,6 +200,7 @@ export default class PillowManager{
     }
 
     startSearchDevice() {
+        this.device_list = [];
         return new Promise((resolve, reject) => {
             if (this.isSearching) {
                 reject(new Error("已经在搜索中"))
@@ -234,6 +235,9 @@ export default class PillowManager{
                             if (peripheralsArray ){
                                 for (var i = 0; i < peripheralsArray.length; i++) {
                                     var peripheral = peripheralsArray[i]
+                                    if (peripheral.rssi >= 0) {//不合理数据
+                                        continue
+                                    }
                                     var isExit = false;
                                     for (var j = 0; j < current_list.length; j++) {
                                         var device = current_list[j]
@@ -260,7 +264,7 @@ export default class PillowManager{
     }
 
     stopSearchDevice() {
-        this.isSearching = false
+        this.isSearching = false;
         this.endTimer()
         BleManager.stopScan()
         NotificationCenter.post(NotificationCenter.name.search.stopSearch)

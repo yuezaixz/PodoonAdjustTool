@@ -57,7 +57,10 @@ class DeviceView extends Component {
     _backAction(){
         this.props.actions.deviceDisconnect(this.props.device_data.uuid)
         this.props.actions.clearDeviceData()
-        setTimeout(()=>{this.props.navigation.pop()},100)
+        setTimeout(()=>{
+            this.props.actions.clearDeviceData()
+            this.props.navigation.pop()
+        },100)
     }
 
     constructor(props){

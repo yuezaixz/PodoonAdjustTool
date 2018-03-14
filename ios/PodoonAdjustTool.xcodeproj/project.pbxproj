@@ -22,7 +22,10 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		A674E7772057786D00ED886C /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A674E7412057785C00ED886C /* libBleManager.a */; };
+		A6368FC420590E5000C090A4 /* CBPeripheral+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6368FBC20590E4F00C090A4 /* CBPeripheral+Extensions.m */; };
+		A6368FC520590E5000C090A4 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = A6368FBF20590E4F00C090A4 /* NSData+Conversion.m */; };
+		A6368FC620590E5000C090A4 /* BleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6368FC020590E4F00C090A4 /* BleManager.m */; };
+		A6368FC720590E5000C090A4 /* BLECommandContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A6368FC120590E5000C090A4 /* BLECommandContext.m */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
 
@@ -223,13 +226,6 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		A674E7402057785C00ED886C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A674E73C2057785C00ED886C /* BleManager.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = BleManager;
-		};
 		A674E7672057785C00ED886C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -318,7 +314,14 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		A674E73C2057785C00ED886C /* BleManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BleManager.xcodeproj; path = "../node_modules/react-native-ble-manager/ios/BleManager.xcodeproj"; sourceTree = "<group>"; };
+		A6368FBC20590E4F00C090A4 /* CBPeripheral+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CBPeripheral+Extensions.m"; path = "../node_modules/react-native-ble-manager/ios/CBPeripheral+Extensions.m"; sourceTree = "<group>"; };
+		A6368FBD20590E4F00C090A4 /* BleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BleManager.h; path = "../node_modules/react-native-ble-manager/ios/BleManager.h"; sourceTree = "<group>"; };
+		A6368FBE20590E4F00C090A4 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Conversion.h"; path = "../node_modules/react-native-ble-manager/ios/NSData+Conversion.h"; sourceTree = "<group>"; };
+		A6368FBF20590E4F00C090A4 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Conversion.m"; path = "../node_modules/react-native-ble-manager/ios/NSData+Conversion.m"; sourceTree = "<group>"; };
+		A6368FC020590E4F00C090A4 /* BleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BleManager.m; path = "../node_modules/react-native-ble-manager/ios/BleManager.m"; sourceTree = "<group>"; };
+		A6368FC120590E5000C090A4 /* BLECommandContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLECommandContext.m; path = "../node_modules/react-native-ble-manager/ios/BLECommandContext.m"; sourceTree = "<group>"; };
+		A6368FC220590E5000C090A4 /* CBPeripheral+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CBPeripheral+Extensions.h"; path = "../node_modules/react-native-ble-manager/ios/CBPeripheral+Extensions.h"; sourceTree = "<group>"; };
+		A6368FC320590E5000C090A4 /* BLECommandContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLECommandContext.h; path = "../node_modules/react-native-ble-manager/ios/BLECommandContext.h"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -327,7 +330,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A674E7772057786D00ED886C /* libBleManager.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -429,6 +431,7 @@
 		13B07FAE1A68108700A75B9A /* PodoonAdjustTool */ = {
 			isa = PBXGroup;
 			children = (
+				A6368FBB20590E3D00C090A4 /* BleManager */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -492,7 +495,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				A674E73C2057785C00ED886C /* BleManager.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -540,12 +542,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A674E73D2057785C00ED886C /* Products */ = {
+		A6368FBB20590E3D00C090A4 /* BleManager */ = {
 			isa = PBXGroup;
 			children = (
-				A674E7412057785C00ED886C /* libBleManager.a */,
+				A6368FC320590E5000C090A4 /* BLECommandContext.h */,
+				A6368FC120590E5000C090A4 /* BLECommandContext.m */,
+				A6368FBD20590E4F00C090A4 /* BleManager.h */,
+				A6368FC020590E4F00C090A4 /* BleManager.m */,
+				A6368FC220590E5000C090A4 /* CBPeripheral+Extensions.h */,
+				A6368FBC20590E4F00C090A4 /* CBPeripheral+Extensions.m */,
+				A6368FBE20590E4F00C090A4 /* NSData+Conversion.h */,
+				A6368FBF20590E4F00C090A4 /* NSData+Conversion.m */,
 			);
-			name = Products;
+			name = BleManager;
 			sourceTree = "<group>";
 		};
 		ADBDB9201DFEBF0600ED6528 /* Products */ = {
@@ -605,10 +614,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = A674E73D2057785C00ED886C /* Products */;
-					ProjectRef = A674E73C2057785C00ED886C /* BleManager.xcodeproj */;
-				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -862,13 +867,6 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A674E7412057785C00ED886C /* libBleManager.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBleManager.a;
-			remoteRef = A674E7402057785C00ED886C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A674E7682057785C00ED886C /* libjsinspector.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -983,6 +981,10 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				A6368FC520590E5000C090A4 /* NSData+Conversion.m in Sources */,
+				A6368FC620590E5000C090A4 /* BleManager.m in Sources */,
+				A6368FC420590E5000C090A4 /* CBPeripheral+Extensions.m in Sources */,
+				A6368FC720590E5000C090A4 /* BLECommandContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
