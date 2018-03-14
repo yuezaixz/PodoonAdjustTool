@@ -36,7 +36,7 @@ class DeviceView extends Component {
         this.props.actions.stopReadInsoleData()
 
         this.props.actions.uploadRecord(
-            this.props.device_data.mac_address,
+            this.props.device_data.macAddress,
             this.props.device_data.point1Val,
             this.props.device_data.point2Val,
             this.props.device_data.point3Val,
