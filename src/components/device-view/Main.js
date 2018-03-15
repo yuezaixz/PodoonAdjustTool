@@ -109,7 +109,7 @@ class Main extends Component {
 
     disconnectHandle(){
         console.log('recive loseConnecting')
-        this.props.getLoading().show('重连中')
+        this.props.getLoading().show('已断开')
     }
 
     reconnectHandle(){

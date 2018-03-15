@@ -54,16 +54,17 @@ export default class PillowManager{
     }
 
     reconnect() {
-        console.log('开始重连')
-        if (this.isLoseConnecting){
-            this.startDeviceConnect(this.current_pillow).then((device)=>{
-                this.isLoseConnecting = true
-                NotificationCenter.post(NotificationCenter.name.search.reconnect)
-            }).catch((error)=>{
-                console.log('重连失败')
-                setTimeout(this.reconnect.bind(this),3000)
-            })
-        }
+        //不重连
+        // console.log('开始重连')
+        // if (this.isLoseConnecting){
+        //     this.startDeviceConnect(this.current_pillow).then((device)=>{
+        //         this.isLoseConnecting = true
+        //         NotificationCenter.post(NotificationCenter.name.search.reconnect)
+        //     }).catch((error)=>{
+        //         console.log('重连失败')
+        //         setTimeout(this.reconnect.bind(this),3000)
+        //     })
+        // }
     }
 
     setUp() {
